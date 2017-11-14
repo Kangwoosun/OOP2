@@ -1,0 +1,85 @@
+ Interface 
+  - 로그인 페이지
+ -> 이 로그인 창은 학생파일과 관리자 파일을 찾을 것이다. 찾으면!
+ -> 1. 비밀번호 체크 2. 학생인지 관리자인지 결정
+
+Administrator
+이 관리자로 학생들이 사용하는데 필요한 모든 정보들을 insert할 것이다.
+1. Administrator Menu
+  1~8가지 menu
+  administrator가 main menu에서 8가지 중 무엇을 선택하면 그에 해당하는 것 출력하고, sub-menu 출력 
+  바로 sub - menu 출력하는 menu도 있음
+ 
+  - Administrator Menu-
+-1. STUDENT INFORMATION
+    STUDENT LIST출력
+    ->  STUDNO  NAME  COURSE 출력
+    Sub -Menu for Student 출력
+   5가지 항목
+   1. Show student list
+    2. Update Student
+    3. Add new student
+    4. Delete Student
+    5. Exit menu
+
+-2. INSTRUCTOR INFORMATION
+     INSTRUCTOR'S LIST출력
+    ->  INSTRUCTNO  NAME  RANK 출력
+    Sub -Menu for Instructor 출력
+    1. Show student list
+    2. Update Student
+    3. Add new student
+    4. Delete Student
+    5. Exit menu
+
+-3. QUESTION INFORMATION
+  - 바로 Sub-Menu 실행
+    - Sub-Menu For Question information- 
+    1. Show QUESTION list
+    2. Update QUESTION
+    3. Add new QUESTION
+    4. Delete QUESTION
+    5. Exit return main menu
+
+-4. SUBJECT INFORMATION
+    -Sub-Menu for Subject Information- 출력
+    1. Show Subject list
+    2. Update Subject
+    3. Add new Subject
+    4. Delete Subject
+    5. Exit back to the menu
+
+-5. GRADE INFORMATION
+-6. Update password
+-7. BUILD FILES
+-8. EXIT
+
+Administration의 역할
+Student Information ? Perform data manipulations (add, edit, delete, search) on student’s records ? Instructors Information ? Perform data manipulations (add, edit, delete, search) on instructor’s records ? Question Information ? Perform data manipulation (add, edit, delete, search, post) on question records ? Build files ? Build all the necessary files(binary, random access file) for the application. 
+
+Student
+1. Student Menu
+  4가지 항목
+-1. Take examination- Take examination of questions posted by the instructor. (Reading/Writing operation)
+    우선 과목을 선택하면 the questions available to this subject with flag post = true will be displayed.
+    After entering all the answer the program then saves the score and the grade equivalent to file. 
+    문제들을 print할 때, 출력하고 정답입력 - 다음 문제 출력- 정답입력 - 이런식으로 할 수도 있지만 
+    한번에 다 출력 할수도 있음
+    유의사항 - 
+     a) Questions are randomized ? The order the questions is different one student and the other 
+     b) Take examination once ? The student cannot take the same examination (ex. Midterm) again. 
+     c) Update grade report ? After the examination grade report is update after examination 
+-2. View examination- View the grade based on the examination taken. (Reading)
+-3. Update password- Update his password. (Reading/Writing operation) 
+-4. Exit
+
+
+student, instructor, questions, subject에 대한 information은 files로부터 저장하고, 불러온다. 그 파일들은 그 프로젝트의 같은 폴더에 위치한다. 어떻게 파일들을 관리할지 자유롭게 디자인해봐라. Sequential file을 하던지 random excess file을 하던지
+
+
+Extra 함수들을 추가로 구현하면 보너스 점수가 있지만,  README.txt 파일에 서술해라.
+
+
+
+*****드는 생각들
+처음에는 문제들이 없는 상태에서 관리자에 들어가 문제를 추가하는 건가?
