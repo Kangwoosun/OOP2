@@ -1,0 +1,27 @@
+class shape{
+private:
+string color;
+string Name;
+point p;
+public:
+string t;
+void setcolor(string c){color = c;}
+string getcolor(){return color;}
+
+class TwoDShape : public shape{
+private:
+int x;
+int y;
+public:
+function(string r){setcolor(r);}
+
+int main()
+{ TwoDShape obj;
+  obj.setcolor("Red");
+
+don't inherit private things!
+
+shape 클래스의 private 데이터 멤버들도 초기화해야한다
+-> 그 이유는?
+부모 클래스의 public 멤버 함수를 사용하기 위해서는 우선 데이터 멤버들을 초기화해줘야 하기 때문
+

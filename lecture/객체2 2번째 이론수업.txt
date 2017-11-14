@@ -1,0 +1,60 @@
+객체2 2nd 이론수업
+생성자 - initialize member data
+생성자는 public으로 정의
+
+생성자를 정의하지 않아도 default constructor를 생성한다
+class 이름이 Test라면 
+Test() { }   - exe파일에 생성
+
+interface of the class  - class definition without implementation 
+일반적으로 멤버함수를 사용할때처럼 .(dot)으로 생성자 함수를 사용할 수 없음
+
+접근 지정자를 쓰지 않으면 defualt로 private
+
+함수 OverLoading
+a signature consists of: Name of function ,Parameter list
+DayOfYear(int, int);
+DayOfYear();
+DayOfYear(int);
+
+생성자 함수 오버로딩을 통해 각 객체가 생성될 때 서로 다른 값의 data member를 가지게 만들 수 있음
+
+DayOfYear. object(3, 7);
+object = DayOfYear(10, 31);
+-> reset the object
+
+class destructor
+- called implicitly when an object is destroyed - 언제 객체가 파괴되지?
+Receives no parameters and returns no value. 
+? May not specify a return type?not even void.
+? A class has one destructor.  
+? A destructor must be public. 
+? If you do not explicitly define a destructor, the compiler defines an “empty” destructor. 
+
+class Test{
+Test ( ) { } -> stack메모리에 저장(?)
+~ Test ( ) { }   -  release data from memory
+ 
+main() { 
+Test object; -> Heap메모리에 저장(?)
+}
+
+DayOfYear::~DayOfYear()
+{ cout << "destractor is called"; }
+
+void main()	
+{
+DayOfYear object(3, 7); //객체가 생성될 때 생성자 실행
+//main함수가 끝나기전 destructor실행 
+}
+
+Last input pop first
+
+local -> static -> global
+
+composition - a class can have objects of other classes as members35
+
+
+
+*****잘 모르겠는 부분, 더 찾아볼 부분*****
+class destructor가 무슨 역할인지

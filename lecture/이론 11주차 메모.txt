@@ -1,0 +1,17 @@
+Class string & string stream Processing
+
+string text("Hello");
+string name(8,'x');
+
+//string클래스에는 많은 생성자가 있으므로 찾아서 쓰도록 해야함
+//string은 배열처럼 참조할 수 있다. ex)string[2]
+//string을 입력받을 때는 getline을 써서 띄워쓰기 까지 받게끔 해야함
+
+string.assign(sourceString ,start, numberOfCharacters); //assign은 오버로딩되어있음
+//sourceString[start]부터 numberofCharacters만큼 복사하여 string에 붙여넣는다.
+
+string[1] == string.at(1);
+
+string += "pet"; == string.append("pet");
+
+//Capacity란 string에서 메모리 할당크기를 말함. (string에서는 relocation을 줄이기 위해서 데이터의 크기보다 더 큰 메모리를 할당해준다. 그 메모리크기를 넘어가면 relocation을 해줘서 좀 더 큰 메모리를 할당해줌)

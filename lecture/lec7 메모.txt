@@ -1,0 +1,55 @@
+<File Processing>
+sequential file- good for~ // 사람이 읽을 수 있는 파일
+random excess file - binary - good for~ // 특정 소프트웨어만 읽을 수 있는 파일(사람이나 다른 소프트웨어는 못 읽음)
+
+#include <fstream> >> ofstream for write to file
+		>> ifstream for reading from file
+
+C++ views each files as a sequence of bytes
+
+ Each file ends either with an end-of-file marker or at a specific byte number recorded in an operatingsystem-maintained, administrative data structure
+
+input stream
+
+#include <iostream> >>> istream cin
+		 >>> ostream cout
+
+#include <fstream>
+-> i want to use ~
+
+int main() {
+ofstream outClientFile( "clients.txt", ios::out );
+
+파일이 생성되지 않았을 때
+if( !outClientFile ) {
+cerr << "File could not be opened" << endl;
+exit( EXIT_FAILURE );
+}
+
+
+
+// cerr - special cout
+// exit - shut down your software
+
+// no permission -> error! 
+
+// cout - cout to the screen
+// outClientFile - cout to the file -> write into the file
+// ctrl+z -> end-of-cin
+
+// when run the software again - 파일에 있던 내용은 없어진다(ios::out을 사용하면 덮어쓰기가 됨)
+// ios::out을 ios::app로 바꾸어주면 이어쓰기가 됨.
+// ios::ate - data can be written anywhere in the file
+
+
+ifstream inClientFile("clients.txt", ios::in);
+
+if(!inClientFile) {
+cerr << "File could not be opened" << endl;
+exit( EXIT_FAILURE );
+
+ofstream object( "file.txt", ios::out) ; create file then output - 존재하든 안하든 새로 생성
+ifstream object( "file.txt", ios::in); only open file
+
+seekg(0) -> move the pointer to the beginning of the file
+

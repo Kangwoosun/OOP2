@@ -1,0 +1,36 @@
+Exception Handling
+
+//예외가 발생했을 때 보통 프로그래머는 세가지 중에 하나를 고른다.
+1. 프로그램을 종료
+2. 코드를 예외로 부터 복구(다시 입력하게끔 하는 것)
+3. 에러를 로그에 기록하고 계속 진행
+
+try{
+
+... //error throw
+
+}// try block
+
+catch(){} // catch block
+
+
+//try block에서 에러가 나서 throw가 실행되면 catch blcok으로 넘어간다. catch()의 실행이 끝나고 catch함수를 나온 뒤에는 정상적으로 실행된다. (throw로 넘겨진 데이터는 catch의 파라미터로 넘어간다.)
+
+//try block에서 에러가 나지 않으면 catch block을 실행하지 않고 건너뛴다.
+
+//catch함수는 try 밑에 파라미터의 데이터타입이 다른 여러개의 함수를 둘 수 있음
+(이렇게 되면 throw에 넣은 데이터타입과 동일한 파라미터가 있는 catch함수가 실행됨)
+
+catch(...){}
+// throw에 넣은 데이터타입이 다른 catch함수의 파라미터의 데이터타입과 같은 것이 없으면 이 함수가 받는다.
+
+void functionA() throw (MyException)
+{
+	...
+	throw MyException(arg);
+	...
+}
+ //throw (MyException)을 써주는 이유는 여기서 throw로 날린 것은 caller에 가서 catch를 하겠다는 의미로 써줌
+
+//throw했는데 catch를 못하면 프로그램이 강제종료됨
+

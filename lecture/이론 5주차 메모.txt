@@ -1,0 +1,100 @@
+<Polymorphism - 다형성>
+
+just one object to  many things
+
+one handle from the basic class
+
+shape class에다 getaarea 함수를 넣지만 이는 넓이를 구할 수 없으므로 이는 vitual Function
+
+redifined getarea function
+
+center()
+{ Erases();
+  draw(); }
+- 도형을 지우고 스크린의 center에 다시 그리는 함수
+- 하지만 어떤 도형을 draw할지, 즉 어떤 클래스의 draw함수를 실행할 지 문제
+
+typedef double Coord;
+데이터 타입 정의?
+Coord xorig; == double xorig;
+
+Shape *obj;
+--여기서 reference이고
+obj = new circle9(7) 
+-- 여기서 new circle은 객체니까
+when i start initialize this obj, define new shape?
+
+obj -> draw(); 
+-- 따라서 이 문장에서는 circle의 draw가 실행됨
+
+
+const int N = 4; 
+int i;
+Shape* sptrs[N];
+
+sptrs[0] = new Line(0.1, 0.1, Co_blue, 0.4, 0.5); 
+sptrs[1] = new Line(0.3, 0.2, Co_red, 0.9, 0.75);
+sptrs[2] = new Circle(0.5, 0.5, Co_green, 0.3);
+sptrs[3] = new Circle(0.3, 0.3, Co_red, 0.1);
+
+먼저 포인터로 Shape 클래스의 객체를 생성한다음 각 객체의 child class의 객체를 부여한다?
+
+class Shapex{};
+클래스간의 상속성의 관계가 있어야 polymorphism가능 
+
+virtual void draw() { cout <<"Draw of Shape "<< endl;}
+virtual을 쓴다는 것은 draw를 실행할 때, 부모의 virtual  void draw가 실행되는 것이 아닌, 
+child 클래스의 draw가 실행되게 함. virtual이 없다면 부모의 함수가 실행
+
+shape sptr[0]   --> line object
+shape sptr[1]   --> line object
+shape sptr[2]   --> circle object
+shape sptr[3]   --> circle object
+
+for(i=0; i<N; i++)
+delete sptrs[ i ];
+
+destructor of the father이 virtual이기 때문에 자식들의 destructor가 실행
+
+obj -> draw()
+
+? Virtual functions changed: overridden - virtual funtion가 있고, 이 함수가 아닌 아닌 다른 function이 실행 
+? Non-virtual functions changed: redefined - virtual funciton이 아니지만 이 함수가 아닌 다른 함수 실행
+
+virtual draw여도 circle class에 draw가 없는데 draw를 실행한다면, shape class(parent class)의  virtual draw가 실행
+
+pure virtual fuction
+virtual void draw() = 0;
+
+**** obj -> draw()  == obj.draw() ? 객체 obj가 포인터일 때?
+
+
+
+
+****중요***
+Shape[
+virtual draw();
+virtual Test();
+};
+
+class Circle: public shape {
+draw() {  } 
+center() {  }
+}; 
+
+int main()	
+{
+ Shape* obj = new circle(  );
+  obj -> center( ) -> X   - Shape 클래스에는 center가 없으므로 ?? -> 그래서 virtual을 써줘야 함  
+
+Shape Ref;
+Circle cir;
+Ref = cir;
+-> 이는 polymorphism이지만 slicing problem 발생
+
+
+Shape* obj;
+circle cir(3,2,3,1);
+
+obj = cir;  -> upcasting
+-> polymorphism은 upcasting이다.  

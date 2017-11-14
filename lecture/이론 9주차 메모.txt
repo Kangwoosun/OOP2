@@ -1,0 +1,70 @@
+
+template<class T> == template<typename T> 
+void swapValues(T& var1, T& var2)
+{
+	T temp;
+	temp = var1;
+	var1 = var2;
+	var2 = temp;
+}
+
+// Template을 통해서 class T를 만들면 T를 데이터타입으로 사용할 수 있음.(오버로딩으로 아무 데이터타입이나 올 수 있음)
+// 프로토타입이랑 정의할때 무조건 사용해주어야됨
+
+template<class T1, class T2>
+void show Stuff(int stuff, T1 stuff2, T2 stuff3);
+
+// template으로 오버로딩 할 데이터타입을 두개이상 넣어줄 수 있음
+// 하지만 template으로 정의한 class 데이터타입을 하나라도 사용하지 않으면 에러, 선언해주면 반드시 사용해야됨
+
+template<class T>
+class Pair
+{
+public:
+	Pair();
+	Pair(T firstVal, T secondVal);
+	void setFirst(T newVal);
+	void setSecond(T newVal);
+	T getFirst() constl
+}
+
+//template을 Class에서 사용할 때  함수에서와 마찬가지로 정의해주면 된다
+
+template<class T>
+Pair<T>::Pair(T firstVal, T secondVal)
+{
+	first = firstVal;
+	second = secondVal;
+}
+
+//Pair<T>, template을 사용한 클래스의 함수를 정의할 때 <T>를 넣어줘야됨
+
+Pair<int> score;
+Pair<char> seats;
+
+//template으로 선언된 데이터타입을 객체 선언할 때 정의 할 수 있음.
+
+void Fun (Point<int> obj)
+{
+	cout << obj.getx();
+}
+
+//<>안에 데이터타입을 명시해주면 template을 사용하지 않아도됨
+
+//Constructor랑 Destructor에는 <> 붙일필요가 없음
+//friend를 설정해서 다른 class의 private을 참조할 때 참조하는 private 데이터가 template클래스를 포함한다면 참조하려는 함수나 클래스도 template클래스가 있어야됨
+
+//부모클래스가 template클래스이면 자식클래스 역시 template클래스임 참조할 때도 <>사용해야됨*
+
+#include <iostream>
+
+template <typename...> class Foo;
+
+template <typename A, typename B>
+class Foo<A,B>
+{
+}
+
+//template클래스를 한 클래스에서 두개이상 사용하게 될때에는 template <typename...> class Foo;를 사용해서 다중클래스를 사용한다고 미리 프로토타입처럼 선언해주어야됨
+//한번 프로토타입처럼 선언해주면 다음부터는 괜찮음
+

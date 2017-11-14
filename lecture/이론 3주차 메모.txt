@@ -1,0 +1,42 @@
+객체 2 이론 3주차
+
++(int a. int b)
+
+class Test
+{   };
+
+void main()
+{
+int a, b, c;
+c = a + b;
+
+test a, b, c;
+c = a + b; -> error -> 따라서 operator overloading이 필요함
+}
+
+Overloading operators
+
+//operator overloading은 클래스 안에서 혹은 밖에서 모두 가능하다
+
+money operator + (Money amount1, Money amount2)
+{ int doller = amount1.getDollars()+~
+ int cents = ~
+ return Money(doller. cents)}
+
+i++ -> unary operator
+z = x*y -> binary operator
+
+Money C = A+B;
+Money C = operator+(A, B);
+
+Operator+ is in Money class(public)
+A +(B) = A+B
+
+=, () , [], -> 이 operator들의 overloading은 class안에 정의되어야 한다
+
+const int  function()
+-> int x = function();
+    x ++ ; -> error
+ 
+int function() const
+-> return하거나 cout 할 때 사용  
