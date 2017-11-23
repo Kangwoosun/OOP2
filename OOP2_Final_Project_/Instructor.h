@@ -8,12 +8,13 @@ using namespace std;
 
 class Instructor {
 private:
-	int instructno;
+	string instructno;
 	string name;
 	string rank;
-	char* passwd;
+	string passwd;
 public:
-	int GetInstructno();
+	Instructor(string, string, string, string);
+	string GetInstructno();
 	string GetName();
 	string GetRank();
 	void SetInstructno(int);
@@ -25,32 +26,49 @@ public:
 	void SubjectInformation();//Instructor Main Menu Funtion
 	void GradeInformation();//Instructor Main Menu Funtion
 	char MainMenu();//Instructor Main Menu Interface
-	
+	void updatePasswd();
+	void BuildFile();
+
 };
+
+Instructor::Instructor(string a, string b, string c, string d) : instructno(a), name(b), rank(c), passwd(d) {}
 
 void Instructor::StudentInformation() {
 	ifstream studentinfo("StudentList.bin", ios::in | ios::binary);
 }
 void Instructor::InstructorInformation() {
-	ifstream studentinfo("InstructorList.bin", ios::in | ios::binary);
+	ifstream InstructorInfo("InstructorList.bin", ios::in | ios::binary);
 }
 void Instructor::QuestionInformation() {
-	ifstream studentinfo("QuestionList.bin", ios::in | ios::binary);
+	ifstream QuestionInfo("QuestionList.bin", ios::in | ios::binary);
 }
 void Instructor::SubjectInformation() {
-	ifstream studentinfo("SubjectList.bin", ios::in|ios::binary);
+	ifstream SubjectInfo("SubjectList.bin", ios::in | ios::binary);
 }
 void Instructor::GradeInformation() {
-
+	ifstream GradeInfo("GradeList.bin", ios::in | ios::binary);
 }
 char Instructor::MainMenu() {
 	char output;
-	cout << "";
+	system("cls");
+	cout << endl;
+	cout << "             ----<Admin>Instructor Main Menu-----\n";
+	cout << "             |                                  |\n";
+	cout << "             |     <S>TUDENT INFORMATION        |\n";
+	cout << "             |     <I>NSTRUCTOR INFORMATION     |\n";
+	cout << "             |     <Q>UESTION INFORMATION       |\n";
+	cout << "             |     <J>SUBJECT INFORMATION       |\n";
+	cout << "             |     <G>GRADE INFORMATION         |\n";
+	cout << "             |     <U>Update password           |\n";
+	cout << "             |     <B>BUILD FILES               |\n";
+	cout << "             |     <X>EXIT                      |\n";
+	cout << "             |                                  |\n";
+	cout << "             ------------------------------------\n";
 	cin >> output;
 	return output;
 }
 
-int Instructor::GetInstructno() { return instructno; }
+string Instructor::GetInstructno() { return instructno; }
 string Instructor::GetName() { return name; }
 string Instructor::GetRank() { return rank; }
 void Instructor::SetInstructno(int a) {
@@ -62,10 +80,9 @@ void Instructor::SetName(string a) {
 void Instructor::SetRank(string a) {
 	rank = a;
 }
+void Instructor::updatePasswd() {
 
+}
+void Instructor::BuildFile() {
 
-
-
-
-
-
+}
