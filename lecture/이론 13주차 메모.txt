@@ -27,3 +27,24 @@ pair< vector <int>::iterator, vector <int>::iterator> location;
 location = mismatch( v1.begin(), v1.end(), v3.begin());
 
 //만약에 v1.begin() 에서 v1.end()까지의 element가 v3.begin()부터 비교해서 다르다면 다른 부분을 location.first로(포인터) 가리킨다.
+
+random_shuffle(iter1, iter2)
+//iter1부터 iter2까지의 요소들을 무작위로 섞음
+
+count(iter1, iter2, value)
+//iter1부터 iter2까지 value와 동일한 값의 갯수를 반환
+
+count_if(iter1, iter2, function)
+//function의 리턴값이 true인 것의 갯수를 반환
+
+min_element(iter1, iter2)
+//제일 작은 요소의 iterator를 반환
+
+max_element(iter1, iter2)
+//제일 큰 요소의 iterator를 반환
+
+for_each(iter1, iter2, function)
+//function을 iter1 - iter2까지의 요소들을 알규먼트로 이용함(이 때 값변환은 없음)
+
+transform(iter1, iter2, iter3, function)
+//iter1 - iter2 까지의 요소들을 이용하여 function을 호출하고 리턴값을 iter3에 복사함
