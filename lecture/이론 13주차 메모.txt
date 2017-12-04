@@ -1,0 +1,29 @@
+STL Algorithms
+
+multimap // 키값하나에 여러개의 값이 있음
+
+map // 키값하나에 하나의 값이 있음
+
+list는 Bidirectional형식임
+
+fill(iterator1, iterator2, value);
+
+//iterator1 부터 iterator2 까지 value로 채움
+
+ostream_iterator< char > output(cout , " ");
+
+//cout을 가리키는 output ostream_iterator를 생성(각 char마다 " "를 넣어줌)	
+
+generate(iterator1, iterator2, function);
+
+//iterator1 부터 iterator2 까지 function의 return값을 채움
+
+equal(itertor1, iterator2, iterator3);
+
+//iterator1 부터 iterator2 까지의 element와 iterator3 부터의 element와 비교해서 같으면 ture 틀리면 false를 반환
+//iterator1 부터 iterator2 까지의 갯수만큼을 iterator3부터 비교함
+
+pair< vector <int>::iterator, vector <int>::iterator> location;
+location = mismatch( v1.begin(), v1.end(), v3.begin());
+
+//만약에 v1.begin() 에서 v1.end()까지의 element가 v3.begin()부터 비교해서 다르다면 다른 부분을 location.first로(포인터) 가리킨다.
