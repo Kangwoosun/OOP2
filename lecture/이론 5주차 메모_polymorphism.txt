@@ -9,8 +9,10 @@ shape class에다 getaarea 함수를 넣지만 이는 넓이를 구할 수 없으므로 이는 vitual 
 redifined getarea function
 
 center()
-{ Erases();
-  draw(); }
+{ 
+Erases();
+  draw(); 
+}
 - 도형을 지우고 스크린의 center에 다시 그리는 함수
 - 하지만 어떤 도형을 draw할지, 즉 어떤 클래스의 draw함수를 실행할 지 문제
 
