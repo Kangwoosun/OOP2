@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include<iostream>
 #include<string>
 using namespace std;
@@ -6,86 +7,103 @@ using namespace std;
 class Question {
 private:
 	int qno;
-	string qinfo;
-	string choice1;
-	string choice2;
-	string choice3;
-	string answer;
-	string subject;
-	string post;
-	string period;
+	char choice1[20];
+	char choice2[20];
+	char choice3[20];
+	char anskey[20];
+
+	char subject[20];
+	char post[10];
+	char period[10];
+
 public:
-	void Setqno(int a) {
-		qno = a;
-	}
-	int Getqno() {
-		return qno;
-	}
-	void Setqinfo(string a) {
-		qinfo = a;
-	}
-	string Getqinfo() {
-		return qinfo;
-	}
-	void Setchoice1(string a) {
-		choice1 = a;
-	}
-	string Getchoice1() {
-		return choice1;
-	}
-	void Setchoice2(string a) {
-		choice2 = a;
-	}
-	string Getchoice2() {
-		return choice2;
-	}
-	void Setchoice3(string a) {
-		choice3 = a;
-	}
-	string Getchoice3() {
-		return choice3;
-	}
-	void Setanser(string a) {
-		answer = a;
-	}
-	string Getanser() {
-		return answer;
-	}
-	void Setsubject(string a) {
-		subject = a;
-	}
-	string Getsubject() {
-		return subject;
-	}
-	void Setpost(string a) {
-		post = a;
-	}
-	string Getpost() {
-		return post;
-	}
-	void Setperiod(string a) {
-		period = a;
-	}
-	string Getperiod() {
-		return period;
-	}
-	char Mainmenu(); // 초기에 나오는 화면
-	void Showinfo();
-	void Update();
+	Question(int = 0, const string& = "", const string& = "", const string& = "",
+		const string& = "", const string& = "", const string& = "", const string& = "");
+	void qrandom();
+	int getqno() { return qno; }
+	string getchoice1() { return choice1; }
+	string getchoice2() { return choice2; }
+	string getchoice3() { return choice3; }
+	string getanskey() { return anskey; }
+	string getsubject() { return subject; }
+	string getpost() { return post; }
+	string getperiod() { return period; }
+	void setqno(int);
+	void setchoice1(const string&);
+	void setchoice2(const string&);
+	void setchoice3(const string&);
+	void setanskey(const string&);
+	void setsubject(const string&);
+	void setpost(const string&);
+	void setperiod(const string&);
 };
 
-char Question::Mainmenu() {
-	char input;
-	system("cls");
-	cout << endl;
-	cout << "        --<Admin> Sub-Menu for Question information --";
-	cout << "        |                                            l";
-	cout << "        |     <S>how Question list                   l";
-	cout << "        |     <U>pdate Question                      l";
-	cout << "        |     <A>dd new Question                     l";
-	cout << "        |     <D>elete Question record               l";
-	cout << "        |     <E>xit return main menu                l";
-	cout << "        ----------------------------------------------";
-	cin >> input;
-	return input;
+Question::Question(int _qno, const string& _choice1, const string& _choice2, const string& _choice3, const string& _anskey,
+	const string& _subject, const string& _post, const string& _period)
+{
+	qno = _qno;
+	setchoice1(_choice1);
+	setchoice2(_choice2);
+	setchoice3(_choice3);
+	setanskey(_anskey);
+	setsubject(_subject);
+	setpost(_post);
+	setperiod(_period);
+}
+
+void Question::setqno(int _qno) {
+	qno = _qno;
+}
+
+void Question::setchoice1(const string& _choice1) {
+	int length = _choice1.size();
+	length = (length < 20 ? length : 19);
+	_choice1.copy(choice1, length);
+	choice1[length] = '\0';
+}
+
+void Question::setchoice2(const string& _choice2) {
+	int length = _choice2.size();
+	length = (length < 20 ? length : 19);
+	_choice2.copy(choice2, length);
+	choice2[length] = '\0';
+}
+
+void Question::setchoice3(const string& _choice3) {
+	int length = _choice3.size();
+	length = (length < 20 ? length : 19);
+	_choice3.copy(choice3, length);
+	choice3[length] = '\0';
+}
+
+void Question::setanskey(const string& _anskey) {
+	int length = _anskey.size();
+	length = (length < 20 ? length : 19);
+	_anskey.copy(anskey, length);
+	anskey[length] = '\0';
+}
+
+void Question::setsubject(const string& _subject) {
+	int length = _subject.size();
+	length = (length < 20 ? length : 19);
+	_subject.copy(subject, length);
+	subject[length] = '\0';
+}
+
+void Question::setpost(const string& _post) {
+	int length = _post.size();
+	length = (length < 10 ? length : 9);
+	_post.copy(post, length);
+	post[length] = '\0';
+}
+
+void Question::setperiod(const string& _period) {
+	int length = _period.size();
+	length = (length < 10 ? length : 9);
+	_period.copy(period, length);
+	period[length] = '\0';
+}
+
+void Question::qrandom() {
+
 }

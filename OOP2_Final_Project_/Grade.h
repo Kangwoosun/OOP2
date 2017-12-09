@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <iostream>
 #include <string>
 using namespace std;
@@ -9,7 +10,7 @@ private:
 	int period;
 	int midscoreEq;// 중간고사 성적 ex) 5문제 중 1개?
 	int finalscoreEq; // 기말고사 성적
-	string subject;
+	char subject[20];
 
 public:
 	int getStudno();
@@ -22,7 +23,7 @@ public:
 	void setperiod(int);
 	void setMidScoreEq(int);
 	void setFinalScoreEq(int);
-	void setSubject(string);
+	void setSubject(const string&);
 };
 
 int Grade::getStudno() {
@@ -61,6 +62,9 @@ void Grade::setFinalScoreEq(int _finalscoreeq) {
 	finalscoreEq = _finalscoreeq;;
 }
 
-void Grade::setSubject(string _subject) {
-	subject = _subject;
+void Grade::setSubject(const string& _subject) {
+	int length = _subject.size();
+	length = (length < 20 ? length : 19);
+	_subject.copy(subject, length);
+	subject[length] = '\0';
 }

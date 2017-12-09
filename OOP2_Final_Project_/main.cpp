@@ -6,17 +6,16 @@
 #include <Windows.h>
 #include <conio.h>
 #include <stdlib.h>
+#include <string>
 #include <vector>
 using namespace std;
 
 
 void gotoxy(int x, int y);
-Instructor* Logined_Admin;
-Student* Logined_Student;
+Instructor Logined_Admin;
+Student Logined_Student;
 bool LoginAdmin();
 bool LoginStudent();
-string instructor[4];
-string student[4];
 string pass = "";
 
 int main()
@@ -24,29 +23,29 @@ int main()
 	char c;
 __LoginGate__:
 	if (LoginAdmin()) {
-		while (c = Logined_Admin->MainMenu() != 'x') {
+		while (c = Logined_Admin.MainMenu() != 'x') {
 			switch (c)
 			{
 			case 's':
-				Logined_Admin->StudentInformation();
+				Logined_Admin.StudentInformation();
 				break;
 			case 'i':
-				Logined_Admin->InstructorInformation();
+				Logined_Admin.InstructorInformation();
 				break;
 			case 'q':
-				Logined_Admin->QuestionInformation();
+				Logined_Admin.QuestionInformation();
 				break;
 			case 'j':
-				Logined_Admin->SubjectInformation();
+				Logined_Admin.SubjectInformation();
 				break;
 			case 'g':
-				Logined_Admin->GradeInformation();
+				Logined_Admin.GradeInformation();
 				break;
 			case 'u':
-				Logined_Admin->updatePasswd();
+				Logined_Admin.updatePasswd();
 				break;
 			case 'b':
-				Logined_Admin->BuildFile();
+				Logined_Admin.BuildFile();
 				break;
 			default:
 				break;
@@ -55,17 +54,17 @@ __LoginGate__:
 	}
 
 	else if (LoginStudent()) {
-		while (c = Logined_Student->MainMenu() != 'x') {
+		while (c = Logined_Student.MainMenu() != 'x') {
 			switch (c)
 			{
 			case 't':
-				Logined_Student->takeExamination();
+				Logined_Student.takeExamination();
 				break;
 			case 'v':
-				Logined_Student->viewGradeReport();
+				Logined_Student.viewGradeReport();
 				break;
 			case 'u':
-				Logined_Student->updatePasswd();
+				Logined_Student.updatePasswd();
 				break;
 			default:
 				break;
@@ -79,6 +78,7 @@ __LoginGate__:
 		cout << "Login Failed.\nThere is no ID in Information\n";
 		cout << "Do you want Login again? y/n\n";
 		cin >> c;
+		cin.ignore();
 		while (1) {
 			switch (c) {
 			case 'y':
@@ -109,57 +109,53 @@ bool LoginAdmin() {
 		exit(EXIT_FAILURE);
 	}
 	cout << endl << endl << endl;
-	cout << "            ---------------- Login ----------------" << endl;
-	cout << "            |                                     |" << endl;
-	cout << "            |      Enter username :               |" << endl;
-	cout << "            |      Enter password :               |" << endl;
-	cout << "            |                                     |" << endl;
-	cout << "            ---------------- Login ----------------" << endl;
+	cout << "            -------------------------- Login ----------------------" << endl;
+	cout << "            |                                                     |" << endl;
+	cout << "            |      Enter username :                               |" << endl;
+	cout << "            |      Enter password :                               |" << endl;
+	cout << "            |                                                     |" << endl;
+	cout << "            -------------------------- Login ----------------------" << endl;
 
 	gotoxy(37, 6); // Move cursor to input user id
 
-	char output;
-	for (int i = 0; i < 4; i++)
-		Admin_Search >> instructor[i];
-
-	cin >> pass;
+	Admin_Search.read(reinterpret_cast<char *> (&Logined_Admin), sizeof(Instructor));
+	getline(cin, pass, '\n');
 	//Input ID
 	while (1) {
-		if (instructor[1] == pass)
+		if (!(pass.compare(Logined_Admin.getName())))
 			break;
+
 		else if (!Admin_Search.eof())
-			for (int i = 0; i < 4; i++)
-				Admin_Search >> instructor[i];
+			Admin_Search.read(reinterpret_cast<char *> (&Logined_Admin), sizeof(Instructor));
 		else
 			return 0;
-
-		cin.clear();
 	}
 
-	Logined_Admin = new Instructor(instructor[0], instructor[1], instructor[2], instructor[3]);
+	char output;
+
 
 
 	//Input PassWord
 	int count;
 	while (1) {
 		count = 0;
-		
+
 
 		while (1) {
 			gotoxy(37, 7);//Move cursor to input password
 			pass = "";
-			while ((output = _getch())!='\r')
+			while ((output = _getch()) != '\r')
 			{
 				pass += output;
 				cout << "*";
 				count++;
 			}
-			if (pass == instructor[3])
+			if (pass == Logined_Admin.getPasswd())
 				return 1;
 
 			else {
 				gotoxy(37, 7);
-				for (int i = 0;i < count; i++)
+				for (int i = 0; i < count; i++)
 					cout << " ";
 			}
 		}
@@ -181,27 +177,25 @@ bool LoginStudent() {
 
 
 	char output;
-
+	Student_Search.read(reinterpret_cast<char *> (&Logined_Student), sizeof(Student));
 
 	while (1) {
-		if (student[1] == pass)
+		if (!pass.compare(Logined_Student.getName()))
 			break;
 		else if (!Student_Search.eof())
-			for (int i = 0; i < 4; i++)
-				Student_Search >> student[i];
+			Student_Search.read(reinterpret_cast<char *>(&Logined_Student), sizeof(Student));
 		else
 			return 0;
 
-		cin.clear();
 	}
 
-	Logined_Student = new Student(student[0], student[1], student[2], student[3]);
+
 
 	//Input PassWord
 	int count;
 	while (1) {
 		count = 0;
-		
+
 
 		while (1) {
 			pass = "";
@@ -212,12 +206,12 @@ bool LoginStudent() {
 				cout << "*";
 				count++;
 			}
-			if (pass == student[3])
+			if (pass == Logined_Student.getPasswd())
 				return 1;
 
 			else {
 				gotoxy(37, 7);
-				for (int i = 0;i < count; i++)
+				for (int i = 0; i < count; i++)
 					cout << " ";
 			}
 		}

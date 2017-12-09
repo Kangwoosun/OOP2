@@ -7,21 +7,22 @@
 using namespace std;
 
 class Student {
-private:
-	string studno;
-	string name;
-	string course;
-	// 변수들이 return type은 확실하지 않음
-public:
-	string passwd;
 
-	Student(string, string, string, string);
-	string getStudno();
+private:
+	int studno;
+	char name[20];
+	char course[30];
+	// 변수들이 return type은 확실하지 않음
+
+public:
+	char passwd[30];
+	Student(int = 0, const std::string& = "", const std::string& = "", const std::string& = "");
+	int getStudno();
 	string getName();
 	string getCourse();
 	string getPasswd();
 
-	void setStudno(string);
+	void setStudno(int);
 	void setName(string);
 	void setCourse(string);
 	void setPasswd(string);
@@ -33,10 +34,16 @@ public:
 	char MainMenu();//Student Main Menu Interface
 };
 
-Student::Student(string _studno, string _name, string _course, string _passwd)
-	: studno(_studno), name(_name), course(_course), passwd(_passwd) {}
+/* Constructor & Set & Get Function */
+Student::Student(int _studno, const string& _name, const string& _course, const string& _passwd)
+{
+	setStudno(_studno);
+	setName(_name);
+	setCourse(_course);
+	setPasswd(_passwd);
+}
 
-string Student::getStudno() {
+int Student::getStudno() {
 	return studno;
 }
 
@@ -52,19 +59,29 @@ string Student::getPasswd() {
 	return passwd;
 }
 
-void Student::setStudno(string _studno) {
+void Student::setStudno(int _studno) {
 	studno = _studno;
 }
 
 void Student::setName(string _name) {
-	name = _name;
+	int length = _name.size();
+	length = (length < 20 ? length : 19);
+	_name.copy(name, length);
+	name[length] = '\0';
 }
+
 void Student::setCourse(string _course) {
-	course = _course;
+	int length = _course.size();
+	length = (length < 20 ? length : 19);
+	_course.copy(course, length);
+	course[length] = '\0';
 }
 
 void Student::setPasswd(string _passwd) {
-	passwd = _passwd;
+	int length = _passwd.size();
+	length = (length < 20 ? length : 19);
+	_passwd.copy(passwd, length);
+	passwd[length] = '\0';
 }
 
 void Student::takeExamination() {
@@ -79,16 +96,16 @@ void Student::updatePasswd() {
 	ifstream inClientFile("StudentList.bin", ios::in | ios::binary);
 }
 
+
 char Student::MainMenu() {
 	char input;
 	cout << endl;
-	system("cls");
-	cout << "\n\n\n\n          ---------------Main Menu----------------\n"
-		<< "          |       <T>ake examination             |\n"
-		<< "          |       <V>iew grade report            |\n"
-		<< "          |       <U>pdate password              |\n"
-		<< "          |       <X>EXIT                        |\n"
-		<< "          |--------------------------------------|\n";
+	cout << "     ---------------Main Menu----------------\n"
+		<< "     |       <T>ake examination             |\n"
+		<< "     |       <V>iew grade report            |\n"
+		<< "     |       <U>pdate password              |\n"
+		<< "     |       <X>EXIT                        |\n"
+		<< "     |--------------------------------------|\n";
 	cin >> input;
 	return input;
 }
