@@ -3,7 +3,7 @@ OOP2_2017 Code + Lecture + FinalProject_partB
 
 OOP2 - Final_Project - projectB
 
-Student names : 12171598 김용준, 12171575 강우선,12171615 박민우
+Student names : INHA_Computer Engineering - 김용준, 강우선, 박민우
 
 We makes 5 header files("Student.h", "Instructor.h", "Grade.h", "Question.h", "Subject.h") and 1 cpp file(main.cpp) to activate the Program. We use 5 binary files("InstructorList.bin", ) to implement the functions.
 
