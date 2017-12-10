@@ -1,4 +1,5 @@
 #pragma once
+#pragma warning(disable:4996)
 #include<iostream>
 #include<string>
 #include<iomanip>
@@ -9,26 +10,25 @@ private:
 	int subjectno;
 	char subname[20];
 	int subunit;
+
 public:
-	Subject(int, string, int);
-	Subject();
+	/* Constructor & Set & Get Function */
+	Subject(int = 0, const string& = "", int = 0);
 	void SetSubjectno(int);
 	void SetSubname(const string& name);
 	void SetSubunit(int);
+
 	int GetSubjectno();
 	string GetSubname();
 	int GetSubunit();
-
 };
-Subject::Subject() {}
-Subject::Subject(int _subjectno, string _subname, int _subunit) {
+
+Subject::Subject(int _subjectno, const string& _subname, int _subunit) {
 	subjectno = _subjectno;
-	int length = _subname.size();
-	length = (length < 20 ? length : 19);
-	_subname.copy(subname, length);
-	subname[length] = '\0';
+	SetSubname(_subname);
 	subunit = _subunit;
 }
+
 void Subject::SetSubjectno(int a) {
 	subjectno = a;
 }

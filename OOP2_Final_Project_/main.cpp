@@ -1,3 +1,4 @@
+#pragma warning(disable : 4996)
 #include "Instructor.h"
 #include "Question.h"
 #include "Subject.h"
@@ -21,30 +22,37 @@ string pass = "";
 int main()
 {
 	char c;
-__LoginGate__:
-	if (LoginAdmin()) {
-		while (c = Logined_Admin.MainMenu() != 'x') {
+__LoginGate__: // If Login Fail, comeback gate
+	if (LoginAdmin()) { //Check ID that is Instructor's ID
+while ((c = Logined_Admin.MainMenu()) != 'x') {
 			switch (c)
 			{
 			case 's':
+				system("cls");
 				Logined_Admin.StudentInformation();
 				break;
 			case 'i':
+				system("cls");
 				Logined_Admin.InstructorInformation();
 				break;
 			case 'q':
+				system("cls");
 				Logined_Admin.QuestionInformation();
 				break;
 			case 'j':
+				system("cls");
 				Logined_Admin.SubjectInformation();
 				break;
 			case 'g':
+				system("cls");
 				Logined_Admin.GradeInformation();
 				break;
 			case 'u':
+				system("cls");
 				Logined_Admin.updatePasswd();
 				break;
 			case 'b':
+				system("cls");
 				Logined_Admin.BuildFile();
 				break;
 			default:
@@ -53,8 +61,8 @@ __LoginGate__:
 		}
 	}
 
-	else if (LoginStudent()) {
-		while (c = Logined_Student.MainMenu() != 'x') {
+	else if (LoginStudent()) {//Check ID that is Student's ID
+		while ((c = Logined_Student.MainMenu()) != 'x') {
 			switch (c)
 			{
 			case 't':
@@ -72,7 +80,7 @@ __LoginGate__:
 		}
 	}
 
-	else
+	else // If Login Failed, User's interface
 	{
 		system("cls");
 		cout << "Login Failed.\nThere is no ID in Information\n";
@@ -83,7 +91,7 @@ __LoginGate__:
 			switch (c) {
 			case 'y':
 				system("cls");
-				goto __LoginGate__;
+				goto __LoginGate__; //Comeback to Login interface
 			case 'n':
 				exit(EXIT_FAILURE);
 			default:
@@ -103,7 +111,7 @@ __LoginGate__:
 bool LoginAdmin() {
 
 	ifstream Admin_Search("InstructorList.bin", ios::in | ios::binary);
-	if (Admin_Search.fail()) {
+	if (Admin_Search.fail()) { //Error Check
 		system("cls");
 		cerr << "Fail to Open InstructorList.bin" << endl;
 		exit(EXIT_FAILURE);
@@ -122,7 +130,7 @@ bool LoginAdmin() {
 	getline(cin, pass, '\n');
 	//Input ID
 	while (1) {
-		if (!(pass.compare(Logined_Admin.getName())))
+		if (!(pass.compare(Logined_Admin.getName())))//Compare Input ID with InstructorList.bin's ID
 			break;
 
 		else if (!Admin_Search.eof())
@@ -144,7 +152,7 @@ bool LoginAdmin() {
 		while (1) {
 			gotoxy(37, 7);//Move cursor to input password
 			pass = "";
-			while ((output = _getch()) != '\r')
+			while ((output = _getch()) != '\r') //Password view '*' and Checking ID's password
 			{
 				pass += output;
 				cout << "*";
@@ -161,13 +169,13 @@ bool LoginAdmin() {
 		}
 
 	}
-
+	Admin_Search.close();
 	return 0;
 }
 
 
 //Student Login()
-bool LoginStudent() {
+bool LoginStudent() { 
 	ifstream Student_Search("StudentList.bin", ios::in | ios::binary);
 	if (Student_Search.fail()) {
 		system("cls");
@@ -180,7 +188,7 @@ bool LoginStudent() {
 	Student_Search.read(reinterpret_cast<char *> (&Logined_Student), sizeof(Student));
 
 	while (1) {
-		if (!pass.compare(Logined_Student.getName()))
+		if (!pass.compare(Logined_Student.getName()))//Compare Input ID with InstructorList.bin's ID
 			break;
 		else if (!Student_Search.eof())
 			Student_Search.read(reinterpret_cast<char *>(&Logined_Student), sizeof(Student));
@@ -200,7 +208,7 @@ bool LoginStudent() {
 		while (1) {
 			pass = "";
 			gotoxy(37, 7);//Move cursor to input password
-			while ((output = _getch()) != '\r')
+			while ((output = _getch()) != '\r')//Password view '*' and Checking ID's password
 			{
 				pass += output;
 				cout << "*";
@@ -217,14 +225,7 @@ bool LoginStudent() {
 		}
 
 	}
-
+	Student_Search.close();
 	return 0;
 }
 
-void gotoxy(int x, int y)
-{
-	COORD pos;
-	pos.X = x - 1;
-	pos.Y = y - 1;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
-}

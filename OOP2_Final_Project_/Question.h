@@ -1,5 +1,5 @@
 #pragma once
-#pragma once
+#pragma warning(disable:4996)
 #include<iostream>
 #include<string>
 using namespace std;
@@ -7,6 +7,7 @@ using namespace std;
 class Question {
 private:
 	int qno;
+	char question[50];
 	char choice1[20];
 	char choice2[20];
 	char choice3[20];
@@ -17,18 +18,11 @@ private:
 	char period[10];
 
 public:
-	Question(int = 0, const string& = "", const string& = "", const string& = "",
+	/* Constructor & Set & Get Function */
+	Question(int = 0, const string& = "", const string& = "", const string& = "", const string& = "",
 		const string& = "", const string& = "", const string& = "", const string& = "");
-	void qrandom();
-	int getqno() { return qno; }
-	string getchoice1() { return choice1; }
-	string getchoice2() { return choice2; }
-	string getchoice3() { return choice3; }
-	string getanskey() { return anskey; }
-	string getsubject() { return subject; }
-	string getpost() { return post; }
-	string getperiod() { return period; }
 	void setqno(int);
+	void setque(const string&);
 	void setchoice1(const string&);
 	void setchoice2(const string&);
 	void setchoice3(const string&);
@@ -36,12 +30,24 @@ public:
 	void setsubject(const string&);
 	void setpost(const string&);
 	void setperiod(const string&);
+
+	int getqno() { return qno; }
+	string getque() { return question; }
+	string getchoice1() { return choice1; }
+	string getchoice2() { return choice2; }
+	string getchoice3() { return choice3; }
+	string getanskey() { return anskey; }
+	string getsubject() { return subject; }
+	string getpost() { return post; }
+	string getperiod() { return period; }
 };
 
-Question::Question(int _qno, const string& _choice1, const string& _choice2, const string& _choice3, const string& _anskey,
+
+Question::Question(int _qno, const string& _que, const string& _choice1, const string& _choice2, const string& _choice3, const string& _anskey,
 	const string& _subject, const string& _post, const string& _period)
 {
 	qno = _qno;
+	setque(_que);
 	setchoice1(_choice1);
 	setchoice2(_choice2);
 	setchoice3(_choice3);
@@ -53,6 +59,13 @@ Question::Question(int _qno, const string& _choice1, const string& _choice2, con
 
 void Question::setqno(int _qno) {
 	qno = _qno;
+}
+
+void Question::setque(const string& _que) { // the question's maximum size is 50.
+	int length = _que.size();
+	length = (length < 50 ? length : 49);
+	_que.copy(question, length);
+	question[length] = '\0';
 }
 
 void Question::setchoice1(const string& _choice1) {
@@ -104,6 +117,3 @@ void Question::setperiod(const string& _period) {
 	period[length] = '\0';
 }
 
-void Question::qrandom() {
-
-}
